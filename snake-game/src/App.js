@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-// import Snake from './Snake'
+import Snake from './Snake'
 // import Food from './Food'
 import './App.css';
 
 function App() {
+  const [snakeDots, setSnakeDots] = useState([
+    [0, 0],
+    [2, 0]
+  ])
 
   return (
     <div className="game-area">
-      <div className="snake-dot" style={{top:0, left:0}}></div>
-      <div className="snake-dot" style={{top:0, left:'2%'}}></div>
-      <div className="snake-dot" style={{top:0, left:'4%'}}></div>
+      <Snake snakeDots={snakeDots} />
     </div>
   );
 }
