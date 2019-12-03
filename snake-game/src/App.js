@@ -20,29 +20,6 @@ function App() {
   const [direction, setDirection] = useState('RIGHT')
   const [speed, setSpeed] = useState(200)
 
-  useEffect(() => {
-    setInterval(moveSnake, 5000)
-    document.onkeydown = onKeyDown
-  }, [])
-
-  const onKeyDown = (e) => {
-    e = e || window.event;
-    switch (e.keyCode) {
-      case 38:
-        setDirection('UP');
-        break;
-      case 40:
-        setDirection('DOWN');
-        break;
-      case 37:
-        setDirection('LEFT');
-        break;
-      case 39:
-        setDirection('RIGHT');
-        break;
-    }
-  }
-
   const moveSnake = () => {
     let dots = [...snakeDots];
     let head = dots[dots.length - 1];
@@ -67,6 +44,29 @@ function App() {
       head
     ];
     setSnakeDots(dots);
+  }
+
+  useEffect(() => {
+    setInterval(moveSnake, 500)
+    document.onkeydown = onKeyDown
+  }, [moveSnake])
+
+  const onKeyDown = (e) => {
+    e = e || window.event;
+    switch (e.keyCode) {
+      case 38:
+        setDirection('UP');
+        break;
+      case 40:
+        setDirection('DOWN');
+        break;
+      case 37:
+        setDirection('LEFT');
+        break;
+      case 39:
+        setDirection('RIGHT');
+        break;
+    }
   }
 
   return (
