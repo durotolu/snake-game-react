@@ -18,8 +18,10 @@ function App() {
   ]);
   const [food, setFood] = useState(getRandomCoordinates())
   const [direction, setDirection] = useState('RIGHT')
+  const [speed, setSpeed] = useState(200)
 
   useEffect(() => {
+    setInterval(moveSnake, 5000)
     document.onkeydown = onKeyDown
   }, [])
 
