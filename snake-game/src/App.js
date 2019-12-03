@@ -53,8 +53,19 @@ function App() {
     }
   }
 
+  const checkIfCollide = () => {
+    let snake = [...snakeDots];
+    let head = snake[snake.length - 1];
+    snake.pop();
+    snake.forEach(dot => {
+      if (head[0] == dot[0] && head[1] == dot[1]) {
+        onGameOver()
+      }
+    })
+  }
+
   const onGameOver = () => {
-    //alert(`Game Over. Snake length is ${snakeDots.length}`);
+    alert(`Game Over. Snake length is ${snakeDots.length}`);
     setSnakeDots([
       [0, 0],
       [2, 0]
@@ -64,6 +75,7 @@ function App() {
 
   useEffect(() => {
     checkIfOutOfGameArea()
+    checkIfCollide()
     setInterval(moveSnake, 500)
     document.onkeydown = onKeyDown
   }, [moveSnake])
