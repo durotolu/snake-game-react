@@ -60,6 +60,11 @@ function App() {
         break;
     }
 
+    dots = [
+      ...dots.slice(1),
+      head
+    ];
+    setSnakeDots(dots);
   }
 
   return (
