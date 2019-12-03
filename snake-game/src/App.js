@@ -32,10 +32,10 @@ function App() {
         head = [head[0] - 2, head[1]];
         break;
       case 'DOWN':
-        head = [head[0], head[1] - 2];
+        head = [head[0], head[1] + 2];
         break;
       case 'UP':
-        head = [head[0], head[1] + 2];
+        head = [head[0], head[1] - 2];
         break;
     }
 
@@ -46,7 +46,24 @@ function App() {
     setSnakeDots(dots);
   }
 
+  const checkIfOutOfGameArea = () => {
+    let head = snakeDots[snakeDots.length - 1];
+    if (head[0] >= 100 || head[1] >= 100 || head[0] < 0 || head[1] < 0) {
+      onGameOver()
+    }
+  }
+
+  const onGameOver = () => {
+    //alert(`Game Over. Snake length is ${snakeDots.length}`);
+    setSnakeDots([
+      [0, 0],
+      [2, 0]
+    ]);
+    setDirection('RIGHT');
+  }
+
   useEffect(() => {
+    checkIfOutOfGameArea()
     setInterval(moveSnake, 500)
     document.onkeydown = onKeyDown
   }, [moveSnake])
